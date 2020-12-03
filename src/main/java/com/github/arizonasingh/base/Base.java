@@ -8,8 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.util.concurrent.TimeUnit;
-
+import java.time.Duration;
+import java.util.Arrays;
 
 public class Base extends ConfigManager {
     private WebDriver driver;
@@ -24,10 +24,9 @@ public class Base extends ConfigManager {
                 options.addArguments("start-maximized");
                 options.addArguments("--js-flags=--expose-gc");
                 options.addArguments("disable-plugins");
-                options.addArguments("--disable-popup-blocking");
                 options.addArguments("--disable-default-apps");
                 options.addArguments("test-type=browser");
-                options.addArguments("disable-infobars");
+                options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation" , "load-extension", "disable-popup-blocking"));
                 options.addArguments("log-level=3");
                 options.setHeadless(true);
                 driver = new ChromeDriver(options);
@@ -45,14 +44,14 @@ public class Base extends ConfigManager {
                 driver = new EdgeDriver();
                 break;
             default:
-                System.out.println("This browser is not supported");
+                System.out.printf("%s browser is not supported",getBrowser());
                 System.exit(0);
         }
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(60));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         return driver;
     }
 
