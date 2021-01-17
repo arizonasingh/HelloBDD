@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GooglePage extends Base {
 
-    private WebDriver driver;
-
     @FindBy(name = "q")
     WebElement searchBox;
 
@@ -29,7 +27,6 @@ public class GooglePage extends Base {
     }
 
     public GooglePage(WebDriver driver) {
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 

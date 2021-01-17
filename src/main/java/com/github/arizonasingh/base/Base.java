@@ -15,6 +15,8 @@ public class Base extends ConfigManager {
     private WebDriver driver;
 
     public WebDriver getDriver() {
+        System.setProperty("wdm.cachePath","webdrivers");
+
         switch(getBrowser()){
             case "chrome":
                 ChromeOptions options = new ChromeOptions();

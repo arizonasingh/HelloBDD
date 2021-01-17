@@ -10,19 +10,21 @@ public class ConfigManager {
     private String appURL;
 
     public ConfigManager() {
-        try (InputStream input = ConfigManager.class.getClassLoader().getResourceAsStream("config.properties")) {
+        System.setProperty("cucumber.reporting.config.file", "src/main/resources/config.properties");
 
-            Properties prop = new Properties();
+        try (InputStream input = ConfigManager.class.getClassLoader().getResourceAsStream("config.properties")) {
 
             if (input == null) {
                 System.out.println("Sorry, unable to find config.properties file");
                 return;
             }
 
+            Properties prop = new Properties();
             prop.load(input);
-            browser = prop.getProperty("browser");
-            appURL = prop.getProperty("appURL");
+            input.close();
 
+            setBrowser(prop.getProperty("browser"));
+            setAppURL(prop.getProperty("appURL"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

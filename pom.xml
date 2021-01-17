@@ -16,11 +16,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <junit.version>5.7.0</junit.version>
-    <cucumber.version>6.9.0</cucumber.version>
+    <cucumber.version>6.9.1</cucumber.version>
+    <cucumer.reporting.version>4.0.93</cucumer.reporting.version>
     <selenium.version>4.0.0-alpha-7</selenium.version>
-    <jackson.version>2.12.0</jackson.version>
+    <jackson.version>2.12.1</jackson.version>
     <slf4j.version>1.7.30</slf4j.version>
-    <webdrivermanager.version>4.2.2</webdrivermanager.version>
+    <webdrivermanager.version>4.3.0</webdrivermanager.version>
     <maven.dependency.version>3.1.2</maven.dependency.version>
     <maven.compiler.version>3.8.1</maven.compiler.version>
     <maven.surefire.version>2.22.2</maven.surefire.version>
@@ -43,6 +44,13 @@
       <artifactId>cucumber-junit</artifactId>
       <version>${cucumber.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/de.monochromata.cucumber/reporting-plugin -->
+    <dependency>
+      <groupId>de.monochromata.cucumber</groupId>
+      <artifactId>reporting-plugin</artifactId>
+      <version>${cucumer.reporting.version}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
@@ -162,10 +170,10 @@
       </plugin>
 
       <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-site-plugin</artifactId>
-      <version>${maven.site.version}</version>
-    </plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${maven.site.version}</version>
+      </plugin>
     </plugins>
   </build>
 
